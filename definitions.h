@@ -100,7 +100,23 @@ struct song_node * random_song(struct song_node * start){
 }
 
 struct song_node * remove_song(struct song_node * start, char[] title, char[] artisto){
-  
+  struct song_node * begin = start;
+  struct song_node * start0;
+  if (!strcmp(start -> name, title ) * !strcmp(start -> artist, artisto)) {
+    start0 = start -> next;
+    free(start);
+    return start0;
+  }
+  while (!strcmp(start -> name, title) * !strcmp(start -> artist, artisto)) {
+    if (!start) {
+      return 0;
+    }
+    start0 = start;
+    start = start -> next;
+  }
+  start0 -> next = start -> next;
+  free(start);
+  return start;
 }
 
 
