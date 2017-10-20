@@ -18,25 +18,25 @@ void print_list(struct song_node * start) {
   }
 }
 
-struct song_node * insert_front(struct song_node * start, char[] title, char[] artisto) {
+struct song_node * insert_front(struct song_node * start, char* title, char* artisto) {
   struct song_node * retNode = (struct song_node *) malloc(sizeof(struct song_node));
-  strncpy(retNode -> name, strlwr(title));
-  strncpy(retNode -> artist, strlwr(artisto));
+  strcpy(retNode -> name, strlwr(title));
+  strcpy(retNode -> artist, strlwr(artisto));
   retNode -> next = start;
   return retNode;
 }
 
-struct song_node * insert_order(struct song_node * start, char[] title, char[] artisto) {
-    struct song_node * retNode = (struct song_node *) malloc(sizeof(struct song_node));
-  strncpy(retNode -> name, strlwr(title));
-  strncpy(retNode -> artist, strlwr(artisto));
+struct song_node * insert_order(struct song_node * start, char* title, char* artisto) {
+  struct song_node * retNode = (struct song_node *) malloc(sizeof(struct song_node));
+  strcpy(retNode -> name, strlwr(title));
+  strcpy(retNode -> artist, strlwr(artisto));
   if (strcmp(start -> artist, retNode -> artist) <= 0) {
     while (strcmp(start -> next -> artist, retNode -> artist) < 0) {
       start = start -> next;
     }
-    if (strcmp(start -> next -> artist, retNode -> artist) = 0) {
+    if (!strcmp(start -> next -> artist, retNode -> artist)) {
       while (strcmp(start -> next -> name, retNode -> name) < 0) {
-	start = start -> next;
+	    start = start -> next;
       }
     }
   }
@@ -44,7 +44,10 @@ struct song_node * insert_order(struct song_node * start, char[] title, char[] a
   start -> next = retNode;
 }
 
-struct song_node * find_song(struct song_node * start, char[] title, char[] artisto) {
+struct song_node * find_song(struct song_node * start, char* title, char* artisto) {
+  struct song_node * retNode = (struct song_node *) malloc(sizeof(struct song_node));
+  strcpy(retNode -> name, strlwr(title));
+  strcpy(retNode -> artist, strlwr(artisto));
   while (strcmp(start -> artist, retNode -> artist) < 0) {
     if (!(start -> next)) {
       return 0;
@@ -70,7 +73,7 @@ struct song_node * find_song(struct song_node * start, char[] title, char[] arti
   return 0;
 }
 
-struct song_node * find_artist(struct song_node * start, char[] artisto) {
+struct song_node * find_artist(struct song_node * start, char* artisto) {
   while (strcmp(start -> artist, retNode -> artist) < 0) {
     if (!(start -> next)) {
       return 0;
@@ -99,7 +102,7 @@ struct song_node * random_song(struct song_node * start){
   return start;
 }
 
-struct song_node * remove_song(struct song_node * start, char[] title, char[] artisto){
+struct song_node * remove_song(struct song_node * start, char* title, char* artisto){
   struct song_node * begin = start;
   struct song_node * start0;
   if (!strcmp(start -> name, title ) * !strcmp(start -> artist, artisto)) {
@@ -118,14 +121,6 @@ struct song_node * remove_song(struct song_node * start, char[] title, char[] ar
   free(start);
   return start;
 }
-
-
-
-
-
-
-
-
 
 struct song_node * free_list(struct song_node * start) {
   if (!start) {
