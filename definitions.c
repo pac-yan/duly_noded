@@ -5,12 +5,12 @@
 #include "definitions.h"
 
 int songcmp(struct song_node * song1, struct song_node * song2){
-    if(strcmp(song1 -> artist, song2 -> artist)){
-        return strcmp(song1 -> artist, song2 -> artist);
-    }
-    else{
-        return strcmp(song1 -> name, song2 -> name);
-    }
+  if(strcmp(song1 -> artist, song2 -> artist)){
+    return strcmp(song1 -> artist, song2 -> artist);
+  }
+  else{
+    return strcmp(song1 -> name, song2 -> name);
+  }
 }
 
 
